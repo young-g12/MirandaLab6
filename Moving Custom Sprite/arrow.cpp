@@ -137,6 +137,7 @@ int arrowClass::getX()
     return x;
 }
 
+// Gilberto Miranda
 int arrowClass::getY()
 {
     return y;

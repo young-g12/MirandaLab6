@@ -1,3 +1,4 @@
+// Gilberto Miranda
 #include "bullet.h"
 bullet::bullet()
 {
