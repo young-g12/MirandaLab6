@@ -23,6 +23,7 @@ void bullet::erase_bullet()
 int bullet::move_bullet (int arrowX, int arrowY, int width, int length, int height)
 {
 	y++;
+	// draw bullet bitmap
 	al_draw_bitmap(bullet_bmp, x, y, 0);
 
 
@@ -41,6 +42,7 @@ int bullet::move_bullet (int arrowX, int arrowY, int width, int length, int heig
 
 } 
 
+// create bullet sprite
 void bullet::create_bullet_bitmap(ALLEGRO_DISPLAY* display)
 {
 	bullet_bmp = al_create_bitmap(16, 16);

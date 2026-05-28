@@ -27,6 +27,7 @@ void arrowClass::drawArrow()
     al_draw_bitmap(arrow_bmp[getDirection()], getX(), getY(), 0);
 }
 
+// draw UFO bitmap
 void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY* display)
 {
     for (int i = 0; i < 4; i++)
@@ -53,6 +54,7 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY* display)
             10,
             al_map_rgb(0, 255, 255));
 
+        // erase UFO bitmap area
         al_draw_filled_rectangle(
             28, 5,
             36, 20,
@@ -140,6 +142,7 @@ int arrowClass::getY()
     return y;
 }
 
+// keep UFO inside screen
 void arrowClass::move_arrow(int width, int height)
 {
     switch (dir)

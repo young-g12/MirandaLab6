@@ -11,12 +11,14 @@ int main(void)
 	arrowClass arrow;
 	bullet mybullet[10];
 	int score=0;
+	// countdown timer
 	int countdown = 30;
 	bool redraw=true;
 	const int FPS = 60;
 
 	//variables
 	int width = 640;
+	//extra space for score and timer
 	int height = 520;
 	bool done = false;
 
@@ -24,6 +26,7 @@ int main(void)
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
+	// font for screen text
 	ALLEGRO_FONT* font = NULL;
 
 	//program init
@@ -41,6 +44,7 @@ int main(void)
 	al_init_primitives_addon();
 	al_init_font_addon();
 
+	// create font
 	font = al_create_builtin_font();
 
 	arrow.create_arrow_bitmap(display);
@@ -55,6 +59,7 @@ int main(void)
 	timer = al_create_timer(1.0 / FPS);
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
+	// register display events 
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_clear_to_color(al_map_rgb(0,0,0));
 	arrow.drawArrow();
@@ -69,15 +74,18 @@ int main(void)
 		{
 			redraw = true;
 
+			// count frames 
 			static int frameCount = 0;
 			frameCount++;
 
+			// decrease countdown 
 			if (frameCount >= FPS)
 			{
 				countdown--;
 				frameCount = 0;
 			}
 
+			//end game when timer reaches 0
 			if (countdown <= 0)
 			{
 				done = true;
@@ -120,10 +128,13 @@ int main(void)
 		{
 			redraw = false; 
 
+			// clear screen every frame
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 
 			if (arrow.getSpeed()!=0){
 				arrow.erase_arrow();
+
+				// keep gameplay area at 480 height 
 				arrow.move_arrow(width,480);
 			}
 			arrow.drawArrow();
@@ -133,6 +144,7 @@ int main(void)
 				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,480);
 			}
 
+			//draw timer
 			al_draw_textf(font,
 				al_map_rgb(255, 255, 255),
 				10, 460,
@@ -140,6 +152,7 @@ int main(void)
 				"Time: %d",
 				countdown);
 
+			//draw score
 			al_draw_textf(font,
 				al_map_rgb(255, 255, 255),
 				500, 460,
