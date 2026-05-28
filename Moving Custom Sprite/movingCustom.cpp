@@ -1,6 +1,7 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include "arrow.h"
 #include <cstdlib>
 #include "bullet.h"
@@ -43,6 +44,10 @@ int main(void)
 	font = al_create_builtin_font();
 
 	arrow.create_arrow_bitmap(display);
+	for (int i = 0;i < 10;i++)
+	{
+		mybullet[i].create_bullet_bitmap(display);
+	}
 
 
 	al_set_target_bitmap(al_get_backbuffer(display));

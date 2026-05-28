@@ -1,18 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11819.183 stable
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Moving Custom Sprite", "Moving Custom Sprite\Moving Custom Sprite.vcxproj", "{07FDD378-FF1D-4460-9C2E-31980015053B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{07FDD378-FF1D-4460-9C2E-31980015053B}.Debug|Win32.ActiveCfg = Debug|Win32
 		{07FDD378-FF1D-4460-9C2E-31980015053B}.Debug|Win32.Build.0 = Debug|Win32
+		{07FDD378-FF1D-4460-9C2E-31980015053B}.Debug|x64.ActiveCfg = Debug|x64
+		{07FDD378-FF1D-4460-9C2E-31980015053B}.Debug|x64.Build.0 = Debug|x64
 		{07FDD378-FF1D-4460-9C2E-31980015053B}.Release|Win32.ActiveCfg = Release|Win32
 		{07FDD378-FF1D-4460-9C2E-31980015053B}.Release|Win32.Build.0 = Release|Win32
+		{07FDD378-FF1D-4460-9C2E-31980015053B}.Release|x64.ActiveCfg = Release|x64
+		{07FDD378-FF1D-4460-9C2E-31980015053B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
