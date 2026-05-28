@@ -1,6 +1,6 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
-#include "arrow.h";
+#include "arrow.h"
 #include "bullet.h"
 
 int main(void)
@@ -13,7 +13,7 @@ int main(void)
 
 	//variables
 	int width = 640;
-	int height = 480;
+	int height = 520;
 	bool done = false;
 
 	//allegro variable
@@ -41,6 +41,7 @@ int main(void)
 	timer = al_create_timer(1.0 / FPS);
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
+	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_clear_to_color(al_map_rgb(0,0,0));
 	arrow.drawArrow();
 	al_flip_display();
