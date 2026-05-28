@@ -1,6 +1,8 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
+#include <allegro5/allegro_font.h>
 #include "arrow.h"
+#include <cstdlib>
 #include "bullet.h"
 
 int main(void)
@@ -21,6 +23,7 @@ int main(void)
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
+	ALLEGRO_FONT* font = NULL;
 
 	//program init
 	if(!al_init())										//initialize Allegro
@@ -28,12 +31,17 @@ int main(void)
 
 	display = al_create_display(width, height);			//create our display object
 
+
 	if(!display)										//test display object
 		return -1;
 
 	//addon init
 	al_install_keyboard();
 	al_init_primitives_addon();
+	al_init_font_addon();
+
+	font = al_create_builtin_font();
+
 	arrow.create_arrow_bitmap(display);
 
 
@@ -107,18 +115,35 @@ int main(void)
 		{
 			redraw = false; 
 
+			al_clear_to_color(al_map_rgb(0, 0, 0));
+
 			if (arrow.getSpeed()!=0){
 				arrow.erase_arrow();
-				arrow.move_arrow(width,height);
+				arrow.move_arrow(width,480);
 			}
 			arrow.drawArrow();
 			for(int i=0;i<10;i++)
 			{
 				mybullet[i].erase_bullet();
-				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,height);
+				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,480);
 			}
+
+			al_draw_textf(font,
+				al_map_rgb(255, 255, 255),
+				10, 460,
+				0,
+				"Time: %d",
+				countdown);
+
+			al_draw_textf(font,
+				al_map_rgb(255, 255, 255),
+				500, 460,
+				0,
+				"Score: %d",
+				score);
+
+			al_flip_display();
 		}
-		al_flip_display();
 	}
 	al_destroy_event_queue(event_queue);
 	al_destroy_timer(timer);
