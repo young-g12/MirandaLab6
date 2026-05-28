@@ -8,6 +8,7 @@ int main(void)
 	arrowClass arrow;
 	bullet mybullet[10];
 	int score=0;
+	int countdown = 30;
 	bool redraw=true;
 	const int FPS = 60;
 
@@ -51,16 +52,32 @@ int main(void)
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 
-		if(ev.type == ALLEGRO_EVENT_TIMER)
+		if (ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			redraw = true;
-			for(int i=0;i<10;i++)
+
+			static int frameCount = 0;
+			frameCount++;
+
+			if (frameCount >= FPS)
+			{
+				countdown--;
+				frameCount = 0;
+			}
+
+			if (countdown <= 0)
+			{
+				done = true;
+			}
+
+			for (int i = 0;i < 10;i++)
 			{
 				if (!mybullet[i].getStatus()) {
 					mybullet[i].fire();
 				}
 			}
 		}
+
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		{
 			done = true;
